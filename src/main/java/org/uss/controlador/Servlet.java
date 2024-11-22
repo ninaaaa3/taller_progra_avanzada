@@ -9,11 +9,14 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utilidad.ConexionBD;
 import java.sql.Connection;
 import java.sql.SQLException;
+import dao.ArticuloDAO;
+import modelo.Articulo;
 
 /**
  *
@@ -22,61 +25,48 @@ import java.sql.SQLException;
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Probar conexión</title>");
-            out.println("</head>");
-            out.println("<body>");
+    private ArticuloDAO articuloDao;
 
-            // Intentar conectar a la base de datos
-            try {
-                ConexionBD conexionBD = ConexionBD.getInstance();
-                Connection connection = conexionBD.getConexion();
-
-                if (connection != null && !connection.isClosed()) {
-                    out.println("<h1>¡Conexión exitosa a la base de datos!</h1>");
-                } else {
-                    out.println("<h1>No se pudo establecer la conexión a la base de datos.</h1>");
-                }
-            } catch (SQLException e) {
-                out.println("<h1>Error al conectar con la base de datos</h1>");
-                out.println("<p>Detalles del error: " + e.getMessage() + "</p>");
-                e.printStackTrace(out);
-            }
-
-            out.println("</body>");
-            out.println("</html>");
-        }
+    @Override
+    public void init() throws ServletException {
+        articuloDao = new ArticuloDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // Redirige al formulario para agregar artículos
+        request.getRequestDispatcher("vista/agregar_articulo.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        String accion = request.getParameter("accion");
 
-    @Override
-    public String getServletInfo() {
-        return "Servlet para probar la conexión a la base de datos";
+        if ("agregar".equals(accion)) {
+            try {
+                Articulo articulo = new Articulo();
+                articulo.setTrackName(request.getParameter("trackName"));
+                articulo.setDescription(request.getParameter("description"));
+                articulo.setUnitPrice(Double.parseDouble(request.getParameter("unitPrice")));
+                articulo.setStock(Integer.parseInt(request.getParameter("stock")));
+                articulo.setCategory(request.getParameter("category"));
+                articulo.setCurrencyType(request.getParameter("currencyType"));
+
+                if (articuloDao.agregarArticulo(articulo)) {
+                    // Si el artículo se agregó correctamente
+                    request.setAttribute("mensaje", "Artículo agregado con éxito.");
+                } else {
+                    // Si no se pudo agregar
+                    request.setAttribute("mensaje", "No se pudo agregar el artículo.");
+                }
+            } catch (SQLException e) {
+                request.setAttribute("mensaje", "Error al agregar el artículo: " + e.getMessage());
+            }
+
+            // Redirige a una vista JSP para mostrar el mensaje
+            request.getRequestDispatcher("vista/resultado_agregar_articulo.jsp").forward(request, response);
+        }
     }
 }
