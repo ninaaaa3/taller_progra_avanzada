@@ -17,7 +17,7 @@ public class ConexionBD {
 
     private static ConexionBD instance;
     private Connection conexion;
-    private static final String ruta = "jdbc:sqlite:C:/Users/kbarr/Desktop/taller_progra_avanzada/taller_progra.db";
+    private static final String ruta = "jdbc:sqlite:C:\\Users\\demis\\OneDrive\\Documentos\\GitHub\\taller_progra_avanzada\\taller_progra.db";
 
     private ConexionBD() throws SQLException {
 
