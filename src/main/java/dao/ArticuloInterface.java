@@ -8,10 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 import modelo.Articulo;
 
-/**
- *
- * @author kbarr
- */
 public interface ArticuloInterface {
     public boolean agregarArticulo (Articulo articulo) throws SQLException;
     public Articulo obtenerArticuloPorId(int id) throws SQLException;

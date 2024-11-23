@@ -1,9 +1,3 @@
-<%-- 
-    Document   : resultado_agregar_articulo
-    Created on : 22-11-2024, 18:58:34
-    Author     : kbarr
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -9,14 +9,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 
-/**
- *
- * @author kbarr
- */
 public class ConexionBD {
 
     private static ConexionBD instance;
     private Connection conexion;
+    //Cambiar la ruta absoluta de la BD
     private static final String ruta = "jdbc:sqlite:C:/Users/kbarr/Desktop/taller_progra_avanzada/taller_progra.db";
 
     private ConexionBD() throws SQLException {

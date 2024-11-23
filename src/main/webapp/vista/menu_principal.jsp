@@ -1,9 +1,3 @@
-<%-- 
-    Document   : menu_principal
-    Created on : 23-11-2024, 00:51:59
-    Author     : kbarr
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

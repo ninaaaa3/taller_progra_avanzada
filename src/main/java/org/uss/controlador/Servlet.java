@@ -29,9 +29,7 @@ public class Servlet extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
-        // Redirige según la acción especificada
         if (accion == null || accion.isEmpty()) {
-            // Redirige al menú principal si no hay acción
             request.getRequestDispatcher("vista/menu_principal.jsp").forward(request, response);
         } else {
             switch (accion) {
@@ -39,19 +37,15 @@ public class Servlet extends HttpServlet {
                     request.getRequestDispatcher("vista/manejo_inventario.jsp").forward(request, response);
                     break;
                 case "listarProductos":
-                    // Implementar la funcionalidad para listar productos más adelante
                     request.getRequestDispatcher("vista/listar_productos.jsp").forward(request, response);
                     break;
                 case "ingresoVentas":
-                    // Implementar la funcionalidad para ingreso de ventas más adelante
                     request.getRequestDispatcher("vista/ingreso_ventas.jsp").forward(request, response);
                     break;
                 case "listarVentas":
-                    // Implementar la funcionalidad para listar ventas más adelante
                     request.getRequestDispatcher("vista/listar_ventas.jsp").forward(request, response);
                     break;
                 default:
-                    // Si la acción no es reconocida, vuelve al menú principal
                     request.getRequestDispatcher("vista/menu_principal.jsp").forward(request, response);
                     break;
             }
@@ -73,12 +67,10 @@ public class Servlet extends HttpServlet {
                 agregarArticulo(request, response);
                 break;
             case "borrar":
-                // Implementar la funcionalidad de borrar producto más adelante
                 request.setAttribute("mensaje", "Funcionalidad pendiente: Borrar Producto");
                 request.getRequestDispatcher("vista/manejo_inventario.jsp").forward(request, response);
                 break;
             case "actualizar":
-                // Implementar la funcionalidad de actualizar producto más adelante
                 request.setAttribute("mensaje", "Funcionalidad pendiente: Actualizar Producto");
                 request.getRequestDispatcher("vista/manejo_inventario.jsp").forward(request, response);
                 break;
@@ -108,7 +100,6 @@ public class Servlet extends HttpServlet {
             request.setAttribute("mensaje", "Error al agregar el artículo: " + e.getMessage());
         }
 
-        // Redirige a una vista JSP para mostrar el mensaje
         request.getRequestDispatcher("vista/resultado_agregar_articulo.jsp").forward(request, response);
     }
 }
