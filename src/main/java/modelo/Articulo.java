@@ -4,10 +4,6 @@
  */
 package modelo;
 
-/**
- *
- * @author kbarr
- */
 public class Articulo {
     private int trackID;
     private String trackName;
