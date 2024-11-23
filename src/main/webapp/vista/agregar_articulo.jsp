@@ -16,7 +16,7 @@
     <section class="section">
         <div class="container">
             <h1 class="title has-text-centered">Agregar Nuevo Artículo</h1>
-            <form action="Servlet" method="post" class="box">
+            <form action="${pageContext.request.contextPath}/Servlet" method="post" class="box">
                 <input type="hidden" name="accion" value="agregar">
 
                 <div class="field">
