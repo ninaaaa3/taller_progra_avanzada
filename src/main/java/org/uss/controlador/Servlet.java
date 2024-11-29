@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.ArticuloDAO;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import modelo.Articulo;
 
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
@@ -37,7 +39,7 @@ public class Servlet extends HttpServlet {
                     request.getRequestDispatcher("vista/manejo_inventario.jsp").forward(request, response);
                     break;
                 case "listarProductos":
-                    request.getRequestDispatcher("vista/listar_productos.jsp").forward(request, response);
+                    listarProductos(request,response);
                     break;
                 case "ingresoVentas":
                     request.getRequestDispatcher("vista/ingreso_ventas.jsp").forward(request, response);
@@ -98,8 +100,27 @@ public class Servlet extends HttpServlet {
             }
         } catch (SQLException e) {
             request.setAttribute("mensaje", "Error al agregar el artículo: " + e.getMessage());
+            throw new ServletException("Error al agregar artículo", e);
         }
 
         request.getRequestDispatcher("vista/resultado_agregar_articulo.jsp").forward(request, response);
+    }
+    
+    private void listarProductos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try{
+            List<Articulo> articulos = articuloDao.obtenerTodosLosArticulos();
+            System.out.println("lista_de_artículos"+articulos);
+            request.setAttribute("lista_de_articulos", articulos);
+            HttpSession ses = request.getSession();
+            ses.setAttribute("articulos", articulos);
+            
+            response.sendRedirect("listar_productos.jsp");
+                    
+        }
+        catch (SQLException e) {
+            request.setAttribute("mensaje", "Error al obtener la lista de artículos: " + e.getMessage());
+            throw new ServletException("Error al obtener los artículos", e);
+        }
     }
 }
