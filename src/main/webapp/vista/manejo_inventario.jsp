@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manejo_inventario
-    Created on : 23-11-2024, 00:53:08
-    Author     : kbarr
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,23 +9,43 @@
 <body>
     <section class="section">
         <div class="container">
-            <h1 class="title has-text-centered mb-5">Manejo de Inventario</h1>
-            <div class="columns is-multiline">
-                <div class="column is-one-third">
-                    <a href="agregar_articulo.jsp" class="button is-primary is-fullwidth">Crear Nuevo Producto</a>
+            <h1 class="title has-text-centered mb-5 has-text-primary">Manejo de Inventario</h1>
+            
+            <div class="card">
+                <div class="card-content">
+                    <form action="servletProductos" method="GET">
+                        <div class="buttons is-centered">
+                            <button 
+                                name="accion" 
+                                value="agregar" 
+                                class="button is-primary is-outlined is-medium">
+                                Crear Nuevo Producto
+                            </button>
+                            <button 
+                                name="accion" 
+                                value="borrar" 
+                                class="button is-danger is-outlined is-medium">
+                                Actualizar Producto
+                            </button>
+                            <button 
+                                name="accion" 
+                                value="actualizar" 
+                                class="button is-warning is-outlined is-medium">
+                                Crear Nuevo Producto
+                            </button>
+                            <button 
+                                name="accion" 
+                                value="volver" 
+                                class="button is-link is-outlined is-medium">
+                                Volver al Menú Principal
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="column is-one-third">
-                    <button class="button is-danger is-fullwidth">Borrar Productos</button>
-                </div>
-                <div class="column is-one-third">
-                    <button class="button is-warning is-fullwidth">Actualizar Productos</button>
-                </div>
-            </div>
-            <div class="has-text-centered mt-5">
-                <a href="menu_principal.jsp" class="button is-secondary">Volver al Menú Principal</a>
             </div>
         </div>
     </section>
 </body>
 </html>
+
 

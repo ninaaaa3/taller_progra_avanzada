@@ -10,7 +10,7 @@
     <section class="section">
         <div class="container">
             <h1 class="title has-text-centered">Agregar Nuevo Artículo</h1>
-            <form action="${pageContext.request.contextPath}/Servlet" method="post" class="box">
+            <form action="servletProductos" method="post" class="box">
                 <input type="hidden" name="accion" value="agregar">
 
                 <div class="field">
@@ -30,7 +30,7 @@
                 <div class="field">
                     <label class="label">Precio Unitario</label>
                     <div class="control">
-                        <input class="input" type="text" name="unitPrice" placeholder="Ingrese el precio unitario" required>
+                        <input class="input" type="number" name="unitPrice" placeholder="Ingrese el precio unitario" required>
                     </div>
                 </div>
 
