@@ -83,7 +83,6 @@ public class servletProductos extends HttpServlet {
             articulo.setUnitPrice(Double.parseDouble(request.getParameter("unitPrice")));
             articulo.setStock(Integer.parseInt(request.getParameter("stock")));
             articulo.setCategory(request.getParameter("category"));
-            articulo.setCurrencyType(request.getParameter("currencyType"));
 
             if (articuloDAO.agregarArticulo(articulo)) {
                 request.setAttribute("mensaje", "Artículo agregado con éxito.");

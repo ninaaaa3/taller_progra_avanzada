@@ -49,20 +49,6 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Tipo de Moneda</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="currencyType" required>
-                                <option value="" disabled selected>Seleccione una moneda</option>
-                                <option value="CLP">CLP</option>
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field">
                     <div class="control has-text-centered">
                         <button class="button is-primary">Agregar</button>
                     </div>

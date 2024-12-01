@@ -13,14 +13,13 @@ public class ArticuloDAO implements ArticuloInterface {
 
     @Override
     public boolean agregarArticulo(Articulo articulo) throws SQLException {
-        String query = "INSERT INTO Track (TrackName, Description, UnitPrice, Stock, Category, CurrencyType) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Track (TrackName, Description, UnitPrice, Stock, Category) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, articulo.getTrackName());
             statement.setString(2, articulo.getDescription());
             statement.setDouble(3, articulo.getUnitPrice());
             statement.setInt(4, articulo.getStock());
             statement.setString(5, articulo.getCategory());
-            statement.setString(6, articulo.getCurrencyType());
             return statement.executeUpdate() > 0;
         }
     }
@@ -39,7 +38,6 @@ public class ArticuloDAO implements ArticuloInterface {
                     articulo.setUnitPrice(resultSet.getDouble("unitPrice"));
                     articulo.setStock(resultSet.getInt("stock"));
                     articulo.setCategory(resultSet.getString("category"));
-                    articulo.setCurrencyType(resultSet.getString("currencyType"));
                     return articulo;
                 }
             }
@@ -49,14 +47,13 @@ public class ArticuloDAO implements ArticuloInterface {
 
     @Override
     public void actualizarArticulo(Articulo articulo) throws SQLException {
-        String query = "UPDATE Track SET TrackName = ?, Description = ?, UnitPrice = ?, Stock = ?, Category = ?, CurrencyType = ? WHERE TrackID = ?";
+        String query = "UPDATE Track SET TrackName = ?, Description = ?, UnitPrice = ?, Stock = ?, Category = ? WHERE TrackID = ?";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, articulo.getTrackName());
             statement.setString(2, articulo.getDescription());
             statement.setDouble(3, articulo.getUnitPrice());
             statement.setInt(4, articulo.getStock());
             statement.setString(5, articulo.getCategory());
-            statement.setString(6, articulo.getCurrencyType());
             statement.setInt(7, articulo.getTrackID());
             statement.executeUpdate();
         }
@@ -89,7 +86,6 @@ public class ArticuloDAO implements ArticuloInterface {
                 articulo.setUnitPrice(resultSet.getDouble("UnitPrice"));
                 articulo.setStock(resultSet.getInt("Stock"));
                 articulo.setCategory(resultSet.getString("Category"));
-                articulo.setCurrencyType(resultSet.getString("CurrencyType"));
                 listaArticulos.add(articulo);
             }
             System.out.println("Lista de artículos en dao"+listaArticulos);

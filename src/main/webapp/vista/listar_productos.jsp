@@ -28,7 +28,6 @@
                             <th>Precio Unitario</th>
                             <th>Stock</th>
                             <th>Categoría</th>
-                            <th>Moneda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +40,6 @@
                                 <td>${articulo.unitPrice}</td>
                                 <td>${articulo.stock}</td>
                                 <td>${articulo.category}</td>
-                                <td>${articulo.currencyType}</td>
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -4,8 +4,6 @@
  */
 package modelo;
 
-import sun.awt.www.content.image.gif;
-
 public class Articulo {
     private int trackID;
     private String trackName;
@@ -13,7 +11,6 @@ public class Articulo {
     private double unitPrice;
     private int stock;
     private String category;
-    private String currencyType;
 
     public int getTrackID() {
         return trackID;
@@ -61,14 +58,5 @@ public class Articulo {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getCurrencyType() {
-        return currencyType;
-    }
-
-    public void setCurrencyType(String currencyType) {
-        this.currencyType = currencyType;
-    }
-    
+    }    
 }
