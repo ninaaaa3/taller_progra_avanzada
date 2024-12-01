@@ -9,9 +9,7 @@ import java.util.List;
 import modelo.Articulo;
 import utilidad.ConexionBD;
 
-public class ArticuloDAO implements ArticuloInterface {
-
-    @Override
+public class ArticuloDAO {
     public boolean agregarArticulo(Articulo articulo) throws SQLException {
         String query = "INSERT INTO Track (TrackName, Description, UnitPrice, Stock, Category) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
@@ -23,8 +21,6 @@ public class ArticuloDAO implements ArticuloInterface {
             return statement.executeUpdate() > 0;
         }
     }
-
-    @Override
     public Articulo obtenerArticuloPorId(int id) throws SQLException {
         String query = "SELECT * FROM Track WHERE TrackID = ?";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
@@ -44,8 +40,6 @@ public class ArticuloDAO implements ArticuloInterface {
         }
         return null;
     }
-
-    @Override
     public void actualizarArticulo(Articulo articulo) throws SQLException {
         String query = "UPDATE Track SET TrackName = ?, Description = ?, UnitPrice = ?, Stock = ?, Category = ? WHERE TrackID = ?";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
@@ -58,8 +52,6 @@ public class ArticuloDAO implements ArticuloInterface {
             statement.executeUpdate();
         }
     }
-
-    @Override
     public void eliminarArticulo(int id) throws SQLException {
         String query = "DELETE FROM Track WHERE trackID = ?";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
@@ -67,8 +59,6 @@ public class ArticuloDAO implements ArticuloInterface {
             statement.executeUpdate();
         }
     }
-
-    @Override
     public List<Articulo> obtenerTodosLosArticulos() throws SQLException {
         String query = "SELECT * FROM Track";
         List<Articulo> listaArticulos = new ArrayList<>();
