@@ -14,13 +14,6 @@ import modelo.Articulo;
 @WebServlet(name = "servletProductos", urlPatterns = {"/servletProductos"})
 public class servletProductos extends HttpServlet {
 
-    private ArticuloDAO articuloDAO;
-
-    @Override
-    public void init() throws ServletException {
-        articuloDAO = new ArticuloDAO();
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -82,7 +75,9 @@ public class servletProductos extends HttpServlet {
     private void agregarArticulo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            ArticuloDAO articuloDAO = new ArticuloDAO();
             Articulo articulo = new Articulo();
+            
             articulo.setTrackName(request.getParameter("trackName"));
             articulo.setDescription(request.getParameter("description"));
             articulo.setUnitPrice(Double.parseDouble(request.getParameter("unitPrice")));

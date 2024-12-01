@@ -15,7 +15,7 @@
                     ${mensaje}
                 </div>
 
-                <form action="servletProductos" method="get" class="box">
+                <form action="Servlet" method="get" class="box">
                     <div class="has-text-centered">
                         <button name="accion" value="volver">Volver al menú</button>
                     </div>

@@ -22,13 +22,6 @@ import modelo.Articulo;
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class ServletPrincipal extends HttpServlet {
 
-    private ArticuloDAO articuloDao;
-
-    @Override
-    public void init() throws ServletException {
-        articuloDao = new ArticuloDAO();
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,13 +37,14 @@ public class ServletPrincipal extends HttpServlet {
                 case "listarProductos":
                     listarProductos(request, response);
                     break;
-
-
                 case "ingresoVentas":
                     request.getRequestDispatcher("vista/ingreso_ventas.jsp").forward(request, response);
                     break;
                 case "listarVentas":
                     request.getRequestDispatcher("vista/listar_ventas.jsp").forward(request, response);
+                    break;
+                case "volver":
+                    request.getRequestDispatcher("vista/menu_principal.jsp").forward(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("vista/menu_principal.jsp").forward(request, response);
@@ -73,12 +67,14 @@ public class ServletPrincipal extends HttpServlet {
     private void listarProductos(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try {
-            List<Articulo> articulos = articuloDao.obtenerTodosLosArticulos();
+            ArticuloDAO articuloDAO = new ArticuloDAO();
+            
+            List<Articulo> articulos = articuloDAO.obtenerTodosLosArticulos();
 
-            HttpSession sess = request.getSession();
-            sess.setAttribute("lista_de_articulos", articulos);
-
+            
+            request.setAttribute("lista_de_articulos", articulos);
             request.getRequestDispatcher("vista/listar_productos.jsp").forward(request, response);
+            
         } catch (Exception e) {
             System.err.println("Error al pedir la lista de artículos desde el servletProductos: "+e);
         }
