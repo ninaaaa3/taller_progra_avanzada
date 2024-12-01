@@ -54,7 +54,7 @@ public class ArticuloDAO implements ArticuloInterface {
             statement.setDouble(3, articulo.getUnitPrice());
             statement.setInt(4, articulo.getStock());
             statement.setString(5, articulo.getCategory());
-            statement.setInt(7, articulo.getTrackID());
+            statement.setInt(6, articulo.getTrackID());
             statement.executeUpdate();
         }
     }

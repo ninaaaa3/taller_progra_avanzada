@@ -23,15 +23,15 @@
                             </button>
                             <button 
                                 name="accion" 
-                                value="borrar" 
+                                value="lista_actualizar_productos" 
                                 class="button is-danger is-outlined is-medium">
                                 Actualizar Producto
                             </button>
                             <button 
                                 name="accion" 
-                                value="actualizar" 
+                                value="lista_eliminar_articulos" 
                                 class="button is-warning is-outlined is-medium">
-                                Crear Nuevo Producto
+                                Borrar producto
                             </button>
                             <button 
                                 name="accion" 
