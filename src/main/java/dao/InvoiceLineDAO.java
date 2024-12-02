@@ -13,20 +13,23 @@ import modelo.DetalleFactura;
 
 public class InvoiceLineDAO {
 
-    public void insertarDetalle(InvoiceLine detalle) throws SQLException {
-        String sql = "INSERT INTO InvoiceLine (InvoiceID, TrackID, Quantity, UnitPrice, LineTotal) VALUES (?, ?, ?, ?, ?)";
+    public void insertarDetalle(DetalleFactura detalle) throws SQLException {
+    String sql = "INSERT INTO InvoiceLine (InvoiceID, TrackID, TrackName, Quantity, UnitPrice, LineTotal) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConexionBD.getInstance().getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+    try (Connection conn = ConexionBD.getInstance().getConexion(); 
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, detalle.getInvoiceId());
-            stmt.setInt(2, detalle.getTrackId());
-            stmt.setInt(3, detalle.getQuantity());
-            stmt.setDouble(4, detalle.getUnitPrice());
-            stmt.setDouble(5, detalle.getLineTotal());
+        stmt.setInt(1, detalle.getInvoiceID());      
+        stmt.setInt(2, detalle.getTrackID());         
+        stmt.setString(3, detalle.getTrackName());    
+        stmt.setInt(4, detalle.getQuantity());        
+        stmt.setDouble(5, detalle.getUnitPrice());    
+        stmt.setDouble(6, detalle.getLineTotal());    
 
-            stmt.executeUpdate();
-        }
+        stmt.executeUpdate();
     }
+}
+
     
     public List<DetalleFactura> obtenerDetallePorInvoiceID(int InvoiceID) throws SQLException {
         String query = "SELECT * FROM InvoiceLine WHERE InvoiceID = ?;";
@@ -35,6 +38,9 @@ public class InvoiceLineDAO {
 
             Connection connection = ConexionBD.getInstance().getConexion();
             PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.setInt(1, InvoiceID);
+            
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -46,6 +52,7 @@ public class InvoiceLineDAO {
                     detalleFactura.setQuantity(resultSet.getInt("Quantity"));
                     detalleFactura.setUnitPrice(resultSet.getFloat("UnitPrice"));
                     detalleFactura.setLineTotal(resultSet.getFloat("LineTotal"));
+                    detalleFactura.setTrackName(resultSet.getString("TrackName"));
                     
                 listaDetalleFacturas.add(detalleFactura);
             }

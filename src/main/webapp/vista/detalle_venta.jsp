@@ -43,11 +43,11 @@
                         <tbody>
                             <c:forEach var="line" items="${invoiceLines}">
                                 <tr>
-                                    <td>${line.InvoiceLineID}</td>
-                                    <td>${line.TrackName}</td>
-                                    <td>${line.Quantity}</td>
-                                    <td>${line.UnitPrice}</td>
-                                    <td>${line.LineTotal}</td>
+                                    <td>${line.invoiceLineID}</td>
+                                    <td>${line.trackName}</td>
+                                    <td>${line.quantity}</td>
+                                    <td>${line.unitPrice}</td>
+                                    <td>${line.lineTotal}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -60,8 +60,8 @@
                 </div>
 
                 <div class="has-text-centered">
-                    <form action="Servlet" method="get">
-                        <button class="button is-primary" name="accion" value="volver">Volver al menú</button>
+                    <form action="servletVentas" method="get">
+                        <button class="button is-primary" name="accion" value="volverLista">Volver</button>
                     </form>
                 </div>
             </div>

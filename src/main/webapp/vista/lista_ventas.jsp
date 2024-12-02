@@ -13,6 +13,11 @@
             <div class="container">
                 <h1 class="title">Lista de Ventas</h1>
 
+                <div class="has-text-right">
+                    <form action="servletVentas" method="get">
+                        <button class="button is-primary is-pulled-right" name="accion" value="volverMenu">Volver</button>
+                    </form>
+                </div>
                 <c:if test="${not empty mensaje}">
                     <div class="notification is-danger is-light">
                         ${mensaje}
@@ -35,7 +40,7 @@
                                 <td>${venta.customerID}</td>
                                 <td>${venta.invoiceDate}</td>
                                 <td>
-                                    <form action="NewServlet" method="get" class="box">
+                                    <form action="servletVentas" method="get" class="box">
                                         <input type="hidden" name="InvoiceID" value="${venta.invoiceID}" />
                                         <button name="accion" value="detalleVenta">Ver detalle</button>
                                     </form>

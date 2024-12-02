@@ -12,6 +12,7 @@
         <section class="section">
             <div class="container">
                 <h1 class="title">Lista de Productos</h1>
+                
 
                 <c:if test="${not empty mensaje}">
                     <div class="notification is-danger is-light">
@@ -31,7 +32,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Iterar sobre la lista de artículos -->
                         <c:forEach var="articulo" items="${lista_de_articulos}">
                             <tr>
                                 <td>${articulo.trackID}</td>

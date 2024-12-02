@@ -1,58 +1,68 @@
 package modelo;
 
 public class DetalleFactura {
-    private int InvoiceLineID;
-    private int InvoiceID;
-    private int TrackID;
-    private int Quantity;
-    private float UnitPrice;
-    private float LineTotal;
+    private int invoiceLineID;
+    private int invoiceID;
+    private int trackID;
+    private String trackName;
+    private int quantity;
+    private float unitPrice;
+    private float lineTotal;
 
     public int getInvoiceLineID() {
-        return InvoiceLineID;
+        return invoiceLineID;
     }
 
-    public void setInvoiceLineID(int InvoiceLineID) {
-        this.InvoiceLineID = InvoiceLineID;
+    public void setInvoiceLineID(int invoiceLineID) {
+        this.invoiceLineID = invoiceLineID;
     }
 
     public int getInvoiceID() {
-        return InvoiceID;
+        return invoiceID;
     }
 
-    public void setInvoiceID(int InvoiceID) {
-        this.InvoiceID = InvoiceID;
+    public void setInvoiceID(int invoiceID) {
+        this.invoiceID = invoiceID;
     }
 
     public int getTrackID() {
-        return TrackID;
+        return trackID;
     }
 
-    public void setTrackID(int TrackID) {
-        this.TrackID = TrackID;
+    public void setTrackID(int trackID) {
+        this.trackID = trackID;
+    }
+
+    public String getTrackName() {
+        return trackName;
+    }
+
+    public void setTrackName(String trackName) {
+        this.trackName = trackName;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public float getUnitPrice() {
-        return UnitPrice;
+        return unitPrice;
     }
 
-    public void setUnitPrice(float UnitPrice) {
-        this.UnitPrice = UnitPrice;
+    public void setUnitPrice(float unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public float getLineTotal() {
-        return LineTotal;
+        return lineTotal;
     }
 
-    public void setLineTotal(float LineTotal) {
-        this.LineTotal = LineTotal;
+    public void setLineTotal(float lineTotal) {
+        this.lineTotal = lineTotal;
     }
 }
+
