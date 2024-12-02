@@ -31,7 +31,7 @@
                             </button>
                         </div>
                     </form>
-                    <form action="NewServlet" method="GET">
+                    <form action="servletVentas" method="GET">
                         <div class="field">
                             <button type="submit" name="accion" value="listarVentas" class="button is-danger is-fullwidth mb-2">
                                 Listar Ventas

@@ -14,7 +14,6 @@
     <div class="container mt-5">
         <h1>Confirmación de Venta</h1>
         
-        <!-- Información de la Factura -->
         <div class="card mb-4">
             <div class="card-body">
                 <h4>Detalles de la Factura</h4>
@@ -26,7 +25,6 @@
             </div>
         </div>
 
-        <!-- Detalles de los Productos -->
         <h4>Productos</h4>
         <table class="table table-striped">
             <thead>
@@ -63,7 +61,6 @@
             </tbody>
         </table>
 
-        <!-- Botón de Finalización -->
         <div class="mt-4">
             <a href="servletVentas" class="btn btn-primary">Volver al Registro de Ventas</a>
         </div>

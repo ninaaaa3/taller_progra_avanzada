@@ -12,24 +12,22 @@ import modelo.Factura;
 public class InvoiceDAO {
 
     public int agregarFactura(Factura factura) throws SQLException {
-        String insert = "INSERT INTO Invoice (CustomerID, PaymentCurrency, Status) VALUES (?, ?, ?);";
-        int invoiceId = -1; // Inicializamos el ID como -1 en caso de que no se genere correctamente.
+        String insert = "INSERT INTO Invoice (CustomerID, PaymentCurrency, Total_CLP, Status) VALUES (?, ?, ?, ?);";
+        int invoiceId = -1; 
 
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(insert, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            // Asignar los valores a la sentencia SQL
             statement.setInt(1, factura.getCustomerID());
             statement.setString(2, factura.getPaymentCurrency());
-            statement.setString(3, factura.getStatus());
+            statement.setFloat(3, factura.getTotal_CLP());
+            statement.setString(4, factura.getStatus());
 
-            // Ejecutar la inserción
             int rowsInserted = statement.executeUpdate();
 
-            // Si la inserción fue exitosa, obtener el ID generado
             if (rowsInserted > 0) {
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        invoiceId = generatedKeys.getInt(1); // Obtener el primer valor de la clave generada
+                        invoiceId = generatedKeys.getInt(1);
                     }
                 }
             }
@@ -38,7 +36,7 @@ public class InvoiceDAO {
             throw e;
         }
 
-        return invoiceId; // Devolvemos el ID generado
+        return invoiceId;
     }
 
     public Factura obtenerFacturaPorID(int id) throws SQLException {
@@ -123,13 +121,33 @@ public class InvoiceDAO {
     public void actualizarTotalFactura(int invoiceId, double totalFactura) throws SQLException {
         String query = "UPDATE Invoice SET Total_CLP = ? WHERE InvoiceID = ?";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setDouble(1, totalFactura); // Actualiza el total
-            statement.setInt(2, invoiceId);      // Especifica la factura que se actualizará
+            statement.setDouble(1, totalFactura);
+            statement.setInt(2, invoiceId);   
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el total de la factura en InvoiceDAO: " + e.getMessage());
             throw e;
         }
     }
+    
+    public int obtenerUltimaFacturaID() throws SQLException {
+    String query = "SELECT InvoiceID FROM Invoice ORDER BY InvoiceID DESC LIMIT 1;";
+    int lastInvoiceID = -1;
+
+    try (Connection connection = ConexionBD.getInstance().getConexion(); 
+         PreparedStatement statement = connection.prepareStatement(query);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        if (resultSet.next()) {
+            lastInvoiceID = resultSet.getInt("InvoiceID");
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Error al obtener el ID de la última factura: " + e.getMessage());
+        throw e;
+    }
+
+    return lastInvoiceID;
+}
 
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 public class CustomerDAO {
 
-    // Listar todos los clientes
     public List<Customer> listarClientes() throws SQLException {
         List<Customer> clientes = new ArrayList<>();
         String sql = "SELECT * FROM Customer";

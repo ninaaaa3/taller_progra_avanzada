@@ -43,11 +43,11 @@
                         <tbody>
                             <c:forEach var="line" items="${invoiceLines}">
                                 <tr>
-                                    <td>${line.InvoiceLineID}</td>
-                                    <td>${line.TrackName}</td>
-                                    <td>${line.Quantity}</td>
-                                    <td>${line.UnitPrice}</td>
-                                    <td>${line.LineTotal}</td>
+                                    <td>${line.invoiceLineID}</td>
+                                    <td>${line.trackID}</td>
+                                    <td>${line.quantity}</td>
+                                    <td>${line.unitPrice}</td>
+                                    <td>${line.lineTotal}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

@@ -12,7 +12,6 @@ public class InvoiceLine {
     private double unitPrice;
     private double lineTotal;
 
-    // Getters y Setters
     public int getInvoiceLineId() { return invoiceLineId; }
     public void setInvoiceLineId(int invoiceLineId) { this.invoiceLineId = invoiceLineId; }
 

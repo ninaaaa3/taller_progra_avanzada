@@ -9,6 +9,7 @@ public class Articulo {
     private int stock;
     private String category;
     private String currencyType;
+    private double precio_CLP;
 
     public int getTrackID() {
         return trackId;
@@ -65,4 +66,5 @@ public class Articulo {
     public void setCurrencyType(String currencyType) {
         this.currencyType = currencyType;
     }
+    
 }

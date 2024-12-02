@@ -7,7 +7,6 @@ public class Customer {
     private String customerEmail;
     private String customerAddress;
 
-    // Getters y Setters
     public int getCustomerId() {
         return customerId;
     }
