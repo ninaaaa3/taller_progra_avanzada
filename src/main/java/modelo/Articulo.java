@@ -5,19 +5,22 @@
 package modelo;
 
 public class Articulo {
-    private int trackID;
+
+    private int trackId;
     private String trackName;
     private String description;
     private double unitPrice;
     private int stock;
     private String category;
+    private String currencyType; // Moneda del precio: USD o EUR
 
+    // Getters y Setters
     public int getTrackID() {
-        return trackID;
+        return trackId;
     }
 
-    public void setTrackID(int trackID) {
-        this.trackID = trackID;
+    public void setTrackID(int trackId) {
+        this.trackId = trackId;
     }
 
     public String getTrackName() {
@@ -58,5 +61,13 @@ public class Articulo {
 
     public void setCategory(String category) {
         this.category = category;
-    }    
+    }
+
+    public String getCurrencyType() {
+        return currencyType;
+    }
+
+    public void setCurrencyType(String currencyType) {
+        this.currencyType = currencyType;
+    }
 }
