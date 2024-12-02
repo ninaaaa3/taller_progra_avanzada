@@ -28,6 +28,7 @@
                             <th>Precio Unitario</th>
                             <th>Stock</th>
                             <th>Categoría</th>
+                            <th>Moneda</th>
                             <th>Actualizar</th>
                         </tr>
                     </thead>
@@ -40,8 +41,9 @@
                                 <td>${articulo.unitPrice}</td>
                                 <td>${articulo.stock}</td>
                                 <td>${articulo.category}</td>
+                                <td>${articulo.currencyType}</td>
                                 <td>
-                                    <form action="servletProductos" method="get" class="box">
+                                    <form action="servletProductos" method="get">
                                         <input type="hidden" name="trackID" value="${articulo.trackID}" />
                                         <button name="accion" value="actualizar">Actualizar</button>
                                     </form>

@@ -11,13 +11,14 @@ import utilidad.ConexionBD;
 
 public class ArticuloDAO {
     public boolean agregarArticulo(Articulo articulo) throws SQLException {
-        String query = "INSERT INTO Track (TrackName, Description, UnitPrice, Stock, Category) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Track (TrackName, Description, UnitPrice, Stock, Category, CurrencyType) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, articulo.getTrackName());
             statement.setString(2, articulo.getDescription());
             statement.setDouble(3, articulo.getUnitPrice());
             statement.setInt(4, articulo.getStock());
             statement.setString(5, articulo.getCategory());
+            statement.setString(6, articulo.getCurrencyType());
             return statement.executeUpdate() > 0;
         }
     }
@@ -76,7 +77,7 @@ public class ArticuloDAO {
                 articulo.setUnitPrice(resultSet.getDouble("UnitPrice"));
                 articulo.setStock(resultSet.getInt("Stock"));
                 articulo.setCategory(resultSet.getString("Category"));
-                articulo.setCategory(resultSet.getString("CurrencyType"));
+                articulo.setCurrencyType(resultSet.getString("CurrencyType"));
 
                 listaArticulos.add(articulo);
             }

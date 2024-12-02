@@ -35,7 +35,7 @@
                                 <td>${venta.customerID}</td>
                                 <td>${venta.invoiceDate}</td>
                                 <td>
-                                    <form action="NewServlet" method="get" class="box">
+                                    <form action="NewServlet" method="get">
                                         <input type="hidden" name="InvoiceID" value="${venta.invoiceID}" />
                                         <button name="accion" value="detalleVenta">Ver detalle</button>
                                     </form>

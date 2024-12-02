@@ -28,10 +28,10 @@
                             <th>Precio Unitario</th>
                             <th>Stock</th>
                             <th>Categoría</th>
+                            <th>Moneda</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Iterar sobre la lista de artículos -->
                         <c:forEach var="articulo" items="${lista_de_articulos}">
                             <tr>
                                 <td>${articulo.trackID}</td>
@@ -40,6 +40,7 @@
                                 <td>${articulo.unitPrice}</td>
                                 <td>${articulo.stock}</td>
                                 <td>${articulo.category}</td>
+                                <td>${articulo.currencyType}</td>
                             </tr>
                         </c:forEach>
                     </tbody>

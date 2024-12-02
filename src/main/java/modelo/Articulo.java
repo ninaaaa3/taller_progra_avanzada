@@ -8,9 +8,8 @@ public class Articulo {
     private double unitPrice;
     private int stock;
     private String category;
-    private String currencyType; // Moneda del precio: USD o EUR
+    private String currencyType;
 
-    // Getters y Setters
     public int getTrackID() {
         return trackId;
     }
