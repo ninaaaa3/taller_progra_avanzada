@@ -23,8 +23,10 @@
                                 Listar Productos
                             </button>
                         </div>
+                        </form>
+                        <form action="servletVentas" method="GET">
                         <div class="field">
-                            <button type="submit" name="accion" value="ingresoVentas" class="button is-success is-fullwidth mb-2">
+                            <button type="submit" name="accion" value="registrarVenta" class="button is-success is-fullwidth mb-2">
                                 Ingresar Venta
                             </button>
                         </div>

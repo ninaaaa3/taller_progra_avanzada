@@ -76,6 +76,8 @@ public class ArticuloDAO {
                 articulo.setUnitPrice(resultSet.getDouble("UnitPrice"));
                 articulo.setStock(resultSet.getInt("Stock"));
                 articulo.setCategory(resultSet.getString("Category"));
+                articulo.setCategory(resultSet.getString("CurrencyType"));
+
                 listaArticulos.add(articulo);
             }
             System.out.println("Lista de artículos en dao"+listaArticulos);
