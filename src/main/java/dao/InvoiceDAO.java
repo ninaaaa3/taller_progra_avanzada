@@ -11,20 +11,34 @@ import modelo.Factura;
 
 public class InvoiceDAO {
 
-    public boolean agregarFactura(Factura factura) throws SQLException {
-        String insert = "INSERT INTO Invoice(CustomerID,PaymentCurrency,Status) VALUES (?,?,?);";
-        boolean resultado = false;
-        try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(insert)) {
+    public int agregarFactura(Factura factura) throws SQLException {
+        String insert = "INSERT INTO Invoice (CustomerID, PaymentCurrency, Status) VALUES (?, ?, ?);";
+        int invoiceId = -1; // Inicializamos el ID como -1 en caso de que no se genere correctamente.
+
+        try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(insert, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            // Asignar los valores a la sentencia SQL
             statement.setInt(1, factura.getCustomerID());
             statement.setString(2, factura.getPaymentCurrency());
             statement.setString(3, factura.getStatus());
 
-            resultado = statement.executeUpdate() > 0;
+            // Ejecutar la inserción
+            int rowsInserted = statement.executeUpdate();
+
+            // Si la inserción fue exitosa, obtener el ID generado
+            if (rowsInserted > 0) {
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        invoiceId = generatedKeys.getInt(1); // Obtener el primer valor de la clave generada
+                    }
+                }
+            }
         } catch (SQLException e) {
-            System.err.println("Error al agregar factura en dao" + e);
+            System.err.println("Error al agregar factura en dao: " + e.getMessage());
             throw e;
         }
-        return resultado;
+
+        return invoiceId; // Devolvemos el ID generado
     }
 
     public Factura obtenerFacturaPorID(int id) throws SQLException {
@@ -89,14 +103,14 @@ public class InvoiceDAO {
 
             while (resultSet.next()) {
                 Factura factura = new Factura();
-                
+
                 factura.setInvoiceID(resultSet.getInt("InvoiceID"));
                 factura.setCustomerID(resultSet.getInt("CustomerID"));
                 factura.setInvoiceDate(resultSet.getString("InvoiceDate"));
                 factura.setPaymentCurrency(resultSet.getString("PaymentCurrency"));
                 factura.setTotal_CLP(resultSet.getFloat("Total_CLP"));
                 factura.setStatus(resultSet.getString("Status"));
-                
+
                 listaFacturas.add(factura);
             }
         } catch (SQLException e) {
@@ -104,6 +118,18 @@ public class InvoiceDAO {
             throw e;
         }
         return listaFacturas;
+    }
+
+    public void actualizarTotalFactura(int invoiceId, double totalFactura) throws SQLException {
+        String query = "UPDATE Invoice SET Total_CLP = ? WHERE InvoiceID = ?";
+        try (Connection connection = ConexionBD.getInstance().getConexion(); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDouble(1, totalFactura); // Actualiza el total
+            statement.setInt(2, invoiceId);      // Especifica la factura que se actualizará
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar el total de la factura en InvoiceDAO: " + e.getMessage());
+            throw e;
+        }
     }
 
 }

@@ -104,7 +104,7 @@
 <body>
     <div class="container mt-5">
         <h1>Registrar Venta</h1>
-        <form action="registerSaleServlet" method="post">
+        <form action="servletVentas" method="post">
             <!-- Selección de Cliente -->
             <div class="mb-3">
                 <label for="customerId" class="form-label">Cliente</label>

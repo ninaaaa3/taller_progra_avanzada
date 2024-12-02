@@ -44,7 +44,7 @@ public class Factura {
         return total_CLP;
     }
 
-    public void setTotal_CLP(Float total_CLP) {
+    public void setTotal_CLP(float total_CLP) {
         this.total_CLP = total_CLP;
     }
 
@@ -54,5 +54,9 @@ public class Factura {
 
     public void setStatus(String Status) {
         this.Status = Status;
+    }
+
+    public void setTotal(double totalFactura) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
