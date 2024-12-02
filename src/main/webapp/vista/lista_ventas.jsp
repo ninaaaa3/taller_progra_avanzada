@@ -25,18 +25,19 @@
                             <th>ID factura</th>
                             <th>ID cliente</th>
                             <th>Fecha factura</th>
+                            <th>Ver detalle</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="venta" items="${lista_de_ventas}">
+                        <c:forEach var="venta" items="${lista_de_facturas}">
                             <tr>
-                                <td>${venta.InvoiceID}</td>
-                                <td>${venta.CustomerID}</td>
-                                <td>${venta.InvoiceDATE}</td>
+                                <td>${venta.invoiceID}</td>
+                                <td>${venta.customerID}</td>
+                                <td>${venta.invoiceDate}</td>
                                 <td>
-                                    <form action="servletVentas" method="get" class="box">
-                                        <input type="hidden" name="InvoiceID" value="${venta.InvoiceID}" />
-                                        <button name="accion" value="ver_detalle">Ver detalle</button>
+                                    <form action="NewServlet" method="get" class="box">
+                                        <input type="hidden" name="InvoiceID" value="${venta.invoiceID}" />
+                                        <button name="accion" value="detalleVenta">Ver detalle</button>
                                     </form>
                                 </td>
                             </tr>

@@ -31,9 +31,6 @@ public class ServletPrincipal extends HttpServlet {
                 case "ingresoVentas":
                     request.getRequestDispatcher("vista/ingreso_ventas.jsp").forward(request, response);
                     break;
-                case "listarVentas":
-                    request.getRequestDispatcher("vista/listar_ventas.jsp").forward(request, response);
-                    break;
                 case "volver":
                     request.getRequestDispatcher("vista/menu_principal.jsp").forward(request, response);
                     break;

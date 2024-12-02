@@ -14,59 +14,55 @@
     <body>
         <section class="section">
             <div class="container">
-                <h1 class="title">Detalle de la Venta #${invoiceID}</h1>
-
-                <c:if test="${not empty mensaje}">
-                    <div class="notification is-danger is-light">
-                        ${mensaje}
-                    </div>
-                </c:if>
-
                 <div class="box">
-                    <h2 class="subtitle">Detalles de la Factura</h2>
-                    <p><strong>ID cliente:</strong> ${customerID}</p>
-                    <p><strong>Fecha de la Factura:</strong> ${invoiceDate}</p>
-                    <p><strong>Moneda de Pago:</strong> ${paymentCurrency}</p>
+                    <h1 class="title has-text-centered">Factura #${invoiceID}</h1>
+                    <div class="columns">
+                        <div class="column is-half">
+                            <p><strong>ID Cliente:</strong> ${customerID}</p>
+                            <p><strong>Fecha:</strong> ${invoiceDate}</p>
+                        </div>
+                        <div class="column is-half">
+                            <p><strong>Moneda de Pago:</strong> ${paymentCurrency}</p>
+                            <p><strong>Estado de la Factura:</strong> ${status}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Botón de regreso -->
-                <a href="invoices.jsp" class="button is-link">Regresar al listado de ventas</a>
-
-                <!-- Tabla de las líneas de la factura -->
-                <table class="table is-striped is-hoverable is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th>ID Línea</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
-                            <th>Total Línea</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Mostrar cada línea de la factura -->
-                        <c:forEach var="line" items="${invoiceLines}">
+                <div class="box">
+                    <h2 class="subtitle">Detalle de la Venta</h2>
+                    <table class="table is-striped is-fullwidth">
+                        <thead>
                             <tr>
-                                <td>${line.InvoiceLineID}</td>
-                                <td>${line.TrackName}</td>
-                                <td>${line.Quantity}</td>
-                                <td>${line.UnitPrice}</td>
-                                <td>${line.LineTotal}</td>
+                                <th>ID Línea</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Total Línea</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="line" items="${invoiceLines}">
+                                <tr>
+                                    <td>${line.InvoiceLineID}</td>
+                                    <td>${line.TrackName}</td>
+                                    <td>${line.Quantity}</td>
+                                    <td>${line.UnitPrice}</td>
+                                    <td>${line.LineTotal}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
 
-                <!-- Pie de la factura -->
                 <div class="box">
                     <h2 class="subtitle">Totales</h2>
                     <p><strong>Total en CLP:</strong> ${totalCLP}</p>
+                </div>
 
-                    <c:if test="${not empty totalForeign}">
-                        <p><strong>Total en ${paymentCurrency}:</strong> ${totalForeign}</p>
-                    </c:if>
-
-                    <p><strong>Estado de la Factura:</strong> ${status}</p>
+                <div class="has-text-centered">
+                    <form action="Servlet" method="get">
+                        <button class="button is-primary" name="accion" value="volver">Volver al menú</button>
+                    </form>
                 </div>
             </div>
         </section>
